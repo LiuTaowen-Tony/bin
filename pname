@@ -1,0 +1,8 @@
+#!/bin/bash 
+
+if [ -e $1 ] ; then
+  name="$(pwd | tr '/' '_')_$1"
+  mv "$1" "${name}"
+  echo "${name}"
+fi
+

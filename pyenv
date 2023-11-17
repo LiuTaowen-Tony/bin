@@ -1,0 +1,9 @@
+#! /bin/bash
+
+python3 -m venv .venv
+name="$(pname .venv)"
+echo "${name}"
+new_dir_name="${HOME}/venvs/${name}"
+mv "${name}" "${new_dir_name}"
+ln -s "${new_dir_name}" .venv
+
