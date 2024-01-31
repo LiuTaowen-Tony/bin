@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ssh ic-shell "tar -czvf $1.tar.gz $1"
+rsync -vr "ic-shell:$1" ~/from-ic-shell/

@@ -1,0 +1,2 @@
+ssh gmlserver "tar -czvf from-gml-server.tar.gz $1"
+rsync -r gmlserver:from-gml-server.tar.gz ~/from-gml-server
