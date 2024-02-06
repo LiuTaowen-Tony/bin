@@ -36,7 +36,7 @@ elif [ $1 == "d" ]; then
   done
   git add .
   git commit -m "update"
-  if ! $(git push | grep -q "Everything up-to-date"); then 
+  if ! $(git push | grep -q "To github.com:LiuTaowen-Tony/bin.git"); then 
     echo "push failed, please resolve manually"
     exit 1
   fi
