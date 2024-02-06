@@ -30,16 +30,16 @@ if [ $1 == "u" ]; then
   for file in "${FILES[@]}"; do
     cp -r "$HOME/$file" $DOTFILES_DIR
   done
-elif [ $1 == "d" ]; then
-  for file in "${FILES[@]}"; do
-    cp -r "$DOTFILES_DIR/$file" $HOME
-  done
   git add .
   git commit -m "update"
   if ! $(git push | grep -q "To github.com:LiuTaowen-Tony/bin.git"); then 
     echo "push failed, please resolve manually"
     exit 1
   fi
+elif [ $1 == "d" ]; then
+  for file in "${FILES[@]}"; do
+    cp -r "$DOTFILES_DIR/$file" $HOME
+  done
 else 
   echo "please specify direction, u for upload, d for download"
 fi
