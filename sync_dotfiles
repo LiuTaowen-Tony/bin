@@ -1,0 +1,46 @@
+#! /bin/bash
+
+DOTFILES_DIR=$HOME/dotfiles
+GITHUB_REPO="git@github.com:LiuTaowen-Tony/dotfiles.git"
+
+FILES=(".SpaceVim.d" ".zshrc")
+
+
+# Check if the dotfiles directory exists
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo "Directory ~/dotfiles does not exist. Cloning from GitHub..."
+    # Clone the GitHub repository
+    git clone $GITHUB_REPO $DOTFILES_DIR
+fi
+
+if [ $# -ne 1 ]; then 
+  echo "please specify direction, u for upload, d for download"
+  exit 2
+fi
+
+cd ${DOTFILES_DIR}
+
+if ! $(git pull | grep -q "Already up to date"); then 
+  echo "pull failed, please resolve manually"
+  exit 1
+fi
+echo "pulled from remote"
+
+if [ $1 == "u" ]; then
+  for file in "${FILES[@]}"; do
+    cp -r "$HOME/$file" $DOTFILES_DIR
+  done
+elif [ $1 == "d" ]; then
+  for file in "${FILES[@]}"; do
+    cp -r "$DOTFILES_DIR/$file" $HOME
+  done
+  git add .
+  git commit -m "update"
+  if ! $(git push | grep -q "Everything up-to-date"); then 
+    echo "push failed, please resolve manually"
+    exit 1
+  fi
+else 
+  echo "please specify direction, u for upload, d for download"
+fi
+
