@@ -20,7 +20,7 @@ fi
 
 cd ${DOTFILES_DIR}
 
-if ! $(git pull | grep -q "Already up to date"); then 
+if ! git pull; then 
   echo "pull failed, please resolve manually"
   exit 1
 fi
