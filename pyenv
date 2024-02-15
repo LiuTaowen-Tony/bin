@@ -1,11 +1,17 @@
 #! /bin/bash
 
-python3 -m venv .venv
 name="$(pname .venv)"
 echo "${name}"
-new_dir_name="${HOME}/venvs/${name}"
-mv "${name}" "${new_dir_name}"
-ln -s "${new_dir_name}" .venv
+
+if [ -z "${VENV_DIR}" ]; then
+  VENV_DIR="${HOME}/venvs"
+fi
+
+actual_venv_dir="${VENV_DIR}/${name}"
+echo "$actual_venv_dir"
+
+python3 -m venv "$actual_venv_dir"
+ln -s "$acutal_venv_dir" .venv
 
 if [ ! -d ".git" ]; then
   echo "init git"
