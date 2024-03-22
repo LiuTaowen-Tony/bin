@@ -24,12 +24,26 @@ fi
 
 # Fetch the latest changes from the remote repository
 echo "fetching $TARGET_DIR"
+# Check if there are any changes to pull
+# First, determine the current branch name
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Fetch the latest changes from the remote without merging them
 git fetch origin
 
-# Check if there are any changes to pull
-if git diff --quiet HEAD -- origin/main; then
-    echo "The $TARGET_DIR directory is up to date."
+# Now, compare the current local branch with its remote counterpart
+if git diff --quiet HEAD origin/"$current_branch"; then
+    echo "The $TARGET_DIR directory is up to date with the remote $current_branch branch."
 else
-    echo "The $TARGET_DIR directory has updates available. You should run 'git pull' to update it."
+    echo "The $TARGET_DIR directory has updates available on the remote $current_branch branch. Attempting to merge..."
+
+    if git merge origin/"$current_branch"; then
+        echo "Merge successful. Changes have been automatically merged and committed."
+    else
+        echo "Merge conflict detected. Please merge the changes manually."
+        # Abort the merge attempt to revert to the pre-merge state
+        git merge --abort
+    fi
 fi
+
 
