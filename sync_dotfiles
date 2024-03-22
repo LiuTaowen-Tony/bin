@@ -3,14 +3,14 @@
 DOTFILES_DIR=$HOME/dotfiles
 GITHUB_REPO="git@github.com:LiuTaowen-Tony/dotfiles.git"
 
-FILES=(".SpaceVim.d" ".zshrc" ".tmux.conf")
-
 # Check if the dotfiles directory exists
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo "Directory ~/dotfiles does not exist. Cloning from GitHub..."
     # Clone the GitHub repository
     git clone $GITHUB_REPO $DOTFILES_DIR
 fi
+
+FILES=( .SpaceVim.d .color_aliases.sh .common_aliases.sh .gitconfig .tmux.conf .vimrc_compatible .zshrc )
 
 if [ $# -ne 1 ]; then 
   echo "please specify direction, u for upload, d for download"
