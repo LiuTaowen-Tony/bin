@@ -29,7 +29,6 @@ if [ ! -d .git ]; then
 fi
 
 # Fetch the latest changes from the remote repository
-echo "fetching $TARGET_DIR"
 # Check if there are any changes to pull
 # First, determine the current branch name
 current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -52,5 +51,4 @@ else
     fi
 fi
 
-git status
-
+git status -sb
