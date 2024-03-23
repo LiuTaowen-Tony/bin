@@ -3,7 +3,7 @@
 verbose=0
 gpu_ids_str=""
 gpu_ids=()
-opt
+opt=""
 
 # Parse options: -v for verbose, and the last argument for GPU IDs
 while getopts ":v" opt; do
