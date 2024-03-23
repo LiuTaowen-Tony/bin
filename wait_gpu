@@ -7,7 +7,7 @@ GPU_CHECK_SCRIPT="is_gpus_free"
 if [ $# -eq 1 ]; then
   GPU_ID=$1
 else
-  print_verbose "Please specify a GPU ID."
+  echo "Please specify a GPU ID."
   exit 1
 fi
 
