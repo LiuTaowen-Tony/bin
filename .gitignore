@@ -3,6 +3,7 @@ __pycache__/
 *.class
 .env
 .venv
+wandb/
 
 # Operating System Generated Files
 .DS_Store # MacOS folder metadata
