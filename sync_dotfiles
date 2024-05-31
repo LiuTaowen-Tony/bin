@@ -10,7 +10,7 @@ if [ ! -d "$DOTFILES_DIR" ]; then
     git clone $GITHUB_REPO $DOTFILES_DIR
 fi
 
-FILES=( .common.sh .SpaceVim.d .color_aliases.sh .common_aliases.sh .gitconfig .tmux.conf .vimrc_compatible )
+FILES=( .common.sh .SpaceVim.d .color_aliases.sh .common_aliases.sh .gitconfig_common .tmux.conf .vimrc_compatible )
 
 if [ $# -ne 1 ]; then 
   echo "please specify direction, u for upload, d for download"
