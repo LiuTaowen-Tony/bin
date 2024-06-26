@@ -10,7 +10,7 @@ if [ ! -d "$DOTFILES_DIR" ]; then
     git clone $GITHUB_REPO $DOTFILES_DIR
 fi
 
-FILES=( .common.sh .SpaceVim.d .gitconfig .tmux.conf .vimrc_compatible )
+IFS=$'\n' read -d '' -r -a FILES < ${DOTFILES_DIR}/files
 
 if [ $# -ne 1 ]; then 
   echo "please specify direction, u for upload, d for download"
